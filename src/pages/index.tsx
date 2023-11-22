@@ -8,7 +8,7 @@ export default function Home() {
   return (
 
     <div className="">
-      <div className='font-bold text-9xl'>HELLO WORLD</div>
+      <div className='font-bold text-9xl'></div>
       <Masthead></Masthead>
     </div>
   )
