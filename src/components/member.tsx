@@ -17,10 +17,10 @@ const Member: React.FC<Props> = ({ id, name, socialId, link }) => (
       width={1336}
       height={1555}
     />
-    <div className=''>{name}</div>
-    <div className=''>
+    <div className='text-2xl xl:text-3xl'>{name}</div>
+    <div className='text-xl'>
       <Link href={link}>
-        <a target='_blank'>{socialId}</a>
+        <span>{socialId}</span>
       </Link>
     </div>
   </div>
