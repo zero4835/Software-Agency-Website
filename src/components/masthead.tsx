@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ScrollContext } from "@/utils/scroll-observer";
 
 const Masthead: React.FC = () => {
+  const [imageLoaded, setImageLoaded] = useState(false)
   const refContainer = useRef<HTMLDivElement>(null);
   const { scrollY } = useContext(ScrollContext);
 
@@ -14,6 +15,11 @@ const Masthead: React.FC = () => {
   if (elContainer) {
     progress = Math.min(1, scrollY / elContainer.clientHeight);
   }
+
+  const handleImageLoaded = useCallback(() => {
+    setImageLoaded(true)
+  }, [])
+
   return (
     <div
       ref={refContainer}
@@ -33,7 +39,7 @@ const Masthead: React.FC = () => {
         <source src="/assets/background.webm" type="video/webm; codecs=vp9" />
       </video>
       <div
-        className={`flex-grow-0 pt-10 transition-opacitiy duration-1000 z-10`}
+        className={`flex-grow-0 pt-10 transition-opacitiy duration-1000 z-10 ${imageLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}
       >
         <Image
           src="/assets/logo.png"
@@ -49,12 +55,13 @@ const Masthead: React.FC = () => {
           <span>done right.</span>
         </h2>
       </div>
-      <div className="flex-grow-0 pb-20 md:pb-10 transition-all duration-1000 z-10">
+      <div className={`flex-grow-0 pb-20 md:pb-10 transition-all duration-1000 z-10 ${imageLoaded ? 'opacity-100' : 'opacity-0 -translate-y-10'}`}>
         <Image
           src="/assets/arrow-down.png"
           width={188 / 3}
           height={155 / 3}
           alt="scroll down"
+          onLoad={handleImageLoaded}
         />
       </div>
     </div>
