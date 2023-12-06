@@ -18,6 +18,7 @@ const ScrollObserver: React.FC<Props> = ({ children }) => {
     setScrollY(window.scrollY)
   }, [])
   useEffect(() => {
+    // allows the browser to scroll more smoothly
     document.addEventListener('scroll', handleScroll, { passive: true })
     return () => document.removeEventListener('scroll', handleScroll,)
   }, [handleScroll])
